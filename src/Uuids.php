@@ -19,7 +19,7 @@ trait Uuids
         });
         static::saving(function ($model) {
             $original_uuid = $model->getOriginal(config('uuid.default_uuid_column'));
-            if ($original_uuid !== $model->{config('uuid.default_uuid_column')}) {
+            if (!$model->{config('uuid.default_uuid_column')} && $model->{config('uuid.default_uuid_column')} === null && $original_uuid !== $model->{config('uuid.default_uuid_column')}) {
                 $model->{config('uuid.default_uuid_column')} = $original_uuid;
             }
         });
